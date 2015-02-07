@@ -1,6 +1,9 @@
-// An intro to using mouse events to move items
-// on the page
-app.moveItemPage = function () {
+// Nearly the same as the move-item demo, but
+// adding in the ability to snap items
+app.moveSnapPage = function () {
+  // Snap the item to a grid of 20px x 20px
+  var gridSize = 20;
+
   // When our draggable item is clicked:
   $('.draggable-item').mousedown(function (e) {
     // Get the item that is being dragged
@@ -27,8 +30,8 @@ app.moveItemPage = function () {
       // Set the item's top and left coordinate
       // based on the mouse position
       item.css({
-        top: e.pageY - shiftY,
-        left: e.pageX - shiftX
+        top: Math.floor((e.pageY - shiftY) / gridSize) * gridSize,
+        left: Math.floor((e.pageX - shiftX) / gridSize) * gridSize
       });
     }
 
