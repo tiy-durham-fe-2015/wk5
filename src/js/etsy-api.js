@@ -30,4 +30,4 @@ app.EtsyApi = function (spec) {
   };
 
   return self;
-}
+};
