@@ -1,5 +1,5 @@
 app.etsyPage = function () {
-  var api = app.EtsyApi({ apiKey: 'get your own!' });
+  var api = app.EtsyApi({ apiKey: 'jgeqmbakgybo48lww24232km' });
   var listTemplate = _.template($('#etsyList').html(), { variable: 'm' });
 
   api.listings()
