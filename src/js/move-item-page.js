@@ -7,14 +7,14 @@ app.moveItemPage = function () {
     var item = $(this);
 
     // Get the item's position relative to the document
-    var offset = item.position();
+    var position = item.position();
 
     // Compute the offset of the mouse cusor in the
     // element, so if we click the middle of the element
     // we move the middle of the element, rather than
     // the top-left corner.
-    var shiftX = e.pageX - offset.left;
-    var shiftY = e.pageY - offset.top;
+    var shiftX = e.pageX - position.left;
+    var shiftY = e.pageY - position.top;
 
     // When the mouse moves, move the item
     $('body').on('mousemove', moveItem);
