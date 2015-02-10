@@ -32,9 +32,13 @@ app.basicRegexPage = function () {
   // Will log 'Hello, I am over 40 years old.'
   console.log(result);
 
+  // var emailRegex = (/[a-z]+@[a-z]+\.[a-z]{2,4}/);
+  // var matches = 'foo@bar.com zdadfae'.match(emailRegex);
+  // console.log(matches);
+
   // These are really just rudimentary examples.
   // Regex is uuber powerful. If you haven't already,
   // go here and read all about em:
-  // 
+  //
   // http://codular.com/regex
 };
