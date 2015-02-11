@@ -29,7 +29,7 @@ app.reorderItemsPage = function () {
     function shouldMoveUp(y) {
       var offset = item.prev().offset();
 
-      return offset && offset.top > y;
+      return (offset && offset.top > y);
     }
 
     // Determine if the specified mouse-y coordinate
@@ -49,8 +49,6 @@ app.reorderItemsPage = function () {
       } else if (shouldMoveDown(e.pageY)) {
         item.insertAfter(item.next());
       }
-
-      return false;
     }
 
     // Clean up all of our event binding when the drag
