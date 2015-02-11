@@ -1,6 +1,15 @@
 // A demo showing how you might reorder items in a
 // list using drag/drop
 app.reorderItemsPage = function () {
+
+  function assignNumbers() {
+    $('.item-num').each(function (index, item) {
+      $(item).text(index + 1);
+    });
+  }
+
+  assignNumbers();
+
   // Bind to any reorderable list items
   $('.reorderable-list-item').mousedown(function (e) {
     // Get the item we are moving
@@ -54,6 +63,7 @@ app.reorderItemsPage = function () {
     // Clean up all of our event binding when the drag
     // /reorder is completed
     function doneReordering() {
+      assignNumbers();
       item.removeClass('reordering-list-item');
       $('body').off('mouseup', doneReordering);
       $('body').off('mousemove', reorder);

@@ -16,3 +16,14 @@
     background: rgba(0, 0, 0, 0.5);
   }
 }
+
+.todo-item {
+  position: relative;
+}
+
+.item-num {
+  min-width: 3em;
+  position: absolute;
+  left: -3.75em;
+  text-align: right;
+}
