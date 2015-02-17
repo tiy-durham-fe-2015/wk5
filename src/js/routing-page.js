@@ -1,5 +1,20 @@
 app.routingPage = function () {
 
+  // app.js
+  // app.router = Rlite();
+
+  // show-details-screen.js
+  // Instead of this:
+  // app.showDetailsScreen = function (appt) {
+  //
+  // };
+  //
+  // I would do this:
+  // app.router.add('#appts/:id', function (p) {
+  //   var appt = app.appointments.findById(p.params.id);
+  //   // display the appt object.
+  // });
+
   // Our router
   var r = Rlite();
 
@@ -10,9 +25,18 @@ app.routingPage = function () {
   r.add('users', showUsers);
 
   // #users/chris -> r.params.name will equal 'chris'
-  r.add('users/:name', function (r) {
-    showUser(r.params.name);
+  r.add('users/:name', function (match) {
+    showUser(match.params.name);
   });
+
+  // #users/joe/edit -> r.params.name will be 'joe'
+  r.add('users/:name/edit', function (match) {
+    $('.main-content').html('<h2>Editing ' + match.params.name + '</h2>');
+  });
+
+  function show404Page() {
+    $('.main-content').html('<h1>404 Not Found</h1>');
+  }
 
   function showUsers() {
     $.get('views/users.html').done(function (html) {
@@ -30,11 +54,31 @@ app.routingPage = function () {
 
   // Hash-based routing
   function processHash() {
+    // location.hash might look like: '#users/joe'
+    // or it might look like this: ''
+    // In this last case, we add the '#' so we can
+    // just call slice without checking to see if
+    // the string is empty or not
     var hash = location.hash || '#';
-    r.run(hash.slice(1));
+
+    // string.slice is a method that slices off chars
+    // so, '#users/joe'.slice(1) === 'users/joe'
+    if (!r.run(hash.slice(1))) {
+      // With Rlite, it's run function returns false
+      // if the URL had no matching routes. In this
+      // case, we are in a 404 (not found) condition
+      show404Page();
+    }
   }
 
+  // The browser window emits a 'hashchange' event
+  // any time the hash portion of the URL changes.
+  // We'll handle that event and call our processHash
+  // function.
   window.addEventListener('hashchange', processHash);
+
+  // When the app first loads, run our routing logic
+  // to display the current route.
   processHash();
 
   // TODO: We could improve this in many ways.
