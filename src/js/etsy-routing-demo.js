@@ -52,7 +52,7 @@
   function processHash() {
     var hash = location.hash || '#';
 
-    if (!r.run(hash.slice(1))) {
+    if (!app.router.run(hash.slice(1))) {
       app.pageNotFound();
     }
   }
