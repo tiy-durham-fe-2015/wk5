@@ -25,8 +25,8 @@ app.routingPage = function () {
   r.add('users', showUsers);
 
   // #users/chris -> r.params.name will equal 'chris'
-  r.add('users/:name', function (match) {
-    showUser(match.params.name);
+  r.add('users/:username', function (url) {
+    showUser(url.params.username);
   });
 
   // #users/joe/edit -> r.params.name will be 'joe'

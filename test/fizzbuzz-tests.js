@@ -17,9 +17,41 @@ describe('fizzbuzz', function () {
     expect(fizzbuzz().length).toEqual(100);
   });
 
-  it('the first 15 numbers are correct', function () {
+  it('has the right values for the first 14 positions', function () {
+    var expectedValues = [
+      1, 2, 'Fizz', 4, 'Buzz',
+      'Fizz', 7, 8, 'Fizz', 'Buzz',
+      11, 'Fizz', 13, 14];
+
+    expect(fizzbuzz().slice(0, 14)).toEqual(expectedValues);
   });
 
-  it('returns the correct sequence', function () {
+  it('should have FizzBuzz for number 15', function () {
+    expect(fizzbuzz()[14]).toEqual('FizzBuzz');
   });
+
+  it('should have all the right FizzBuzzes', function () {
+    var result = fizzbuzz();
+
+    result.forEach(function (item, index) {
+      var number = index + 1;
+
+      if (number % 3 === 0 && number % 5 === 0) {
+        expect(item).toEqual('FizzBuzz');
+      }
+    });
+  });
+
+  it('should have all the right Fizzes', function () {
+    var result = fizzbuzz();
+
+    result.forEach(function (item, index) {
+      var number = index + 1;
+
+      if (number % 3 === 0 && number % 5 !== 0) {
+        expect(item).toEqual('Fizz');
+      }
+    });
+  });
+
 });
